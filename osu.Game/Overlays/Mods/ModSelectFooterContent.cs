@@ -130,7 +130,10 @@ namespace osu.Game.Overlays.Mods
             }
 
             if (beatmapAttributesDisplay != null)
+            {
                 beatmapAttributesDisplay.Mods.Value = ActiveMods.Value;
+                beatmapAttributesDisplay.Collapsed.Value = false;
+            }
         }
 
         protected override void Update()
@@ -150,6 +153,9 @@ namespace osu.Game.Overlays.Mods
                 // only update preview panel's collapsed state after we are fully visible, to ensure all the buttons are where we expect them to be.
                 if (Alpha == 1)
                     beatmapAttributesDisplay.Collapsed.Value = DisplaysStackedVertically;
+
+                if (ActiveMods.Value.Count != 0)
+                    beatmapAttributesDisplay.Collapsed.Value = false;
 
                 contentFlow.LayoutDuration = 200;
                 contentFlow.LayoutEasing = Easing.OutQuint;
