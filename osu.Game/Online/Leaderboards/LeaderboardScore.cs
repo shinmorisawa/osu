@@ -103,7 +103,7 @@ namespace osu.Game.Online.Leaderboards
         private void load(IAPIProvider api, OsuColour colour)
         {
             var user = Score.User;
-            bool isUserFriend = api.Friends.Any(friend => friend.TargetID == user.OnlineID);
+            bool isUserFriend = api.LocalUserState.Friends.Any(friend => friend.TargetID == user.OnlineID);
 
             statisticsLabels = GetStatistics(Score).Select(s => new ScoreComponentLabel(s)).ToList();
 
@@ -429,7 +429,7 @@ namespace osu.Game.Online.Leaderboards
                 Font = OsuFont.GetFont(size: 16, weight: FontWeight.Bold);
             }
 
-            protected override string Format() => Date.ToShortRelativeTime(TimeSpan.FromSeconds(30));
+            protected override LocalisableString Format() => Date.ToShortRelativeTime(TimeSpan.FromSeconds(30));
         }
 
         public class LeaderboardScoreStatistic
