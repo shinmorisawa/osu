@@ -306,7 +306,7 @@ namespace osu.Game.Screens.Play.HUD
             isFriend = User != null && api.LocalUserState.Friends.Any(u => User.OnlineID == u.TargetID);
 
             scoreDisplayMode = config.GetBindable<ScoringMode>(OsuSetting.ScoreDisplayMode);
-            scoreDisplayMode.BindValueChanged(_ => updateScore());
+            scoreDisplayMode.BindValueChanged(_ => updateScore(), true);
             TotalScore.BindValueChanged(_ => updateScore(), true);
 
             Accuracy.BindValueChanged(v => accuracyText.Text = v.NewValue.FormatAccuracy(), true);
